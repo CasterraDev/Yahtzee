@@ -1,0 +1,558 @@
+html{
+    height:100%;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+button:focus{
+    outline:0;
+}
+
+body{
+    height:100%;
+    margin:0;
+    background-color: green;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+}
+
+h1, h2, h3, h4, h5{
+    
+}
+
+h1#logo{
+    color:white;
+    display:inline-block;
+    margin:0;
+    margin-top:25px;
+    font-size: 40px;
+    text-shadow:0 2px 0 darkgreen;
+    cursor: default;
+    position:relative;
+}
+
+#site-wrapper{
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+@media (min-width: 768px){
+    #site-wrapper{
+        height: 100%;
+    }
+}
+
+#canvas{
+    width:100%;
+    height:100%;
+    min-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transform: translateX(0) translateZ(0);
+    transform: translateX(0) translateZ(0);
+    -webkit-transform: translate3d(0);
+    transform: translate3d(0);
+    -webkit-transition: -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+    transition: -webkit-transform 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
+}
+
+#rules{
+    width: 350px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -410px;
+    padding: 30px;
+    padding-bottom:0;
+    padding-top:0;
+    background-color: rgba(255,255,255,0.65);
+}
+
+#rules h2{
+    color: darkgreen;
+    font-size: 32px;
+    border-bottom: 1px solid #00b100;
+    margin: 0;
+}
+#rules h3{
+    margin-bottom: -10px;
+}
+
+#openRulesBtn{
+    border:0;
+    float:left;
+    clear:both;
+    margin-left:30px;
+    color:white;
+    background-color: #007e00;
+    padding: 6px 12px;
+    font-size: 16px;
+    transition: opacity, .3s;
+    box-shadow:inset 0 3px 8px rgb(0,0,0);
+    border-radius: 6px;
+    cursor:pointer;
+}
+#openRulesBtn:hover{
+    background-color: #004d00;
+}
+#openRulesBtn i {
+    margin-right: 5px;
+}
+
+.tabs{
+    list-style:none;
+    position:relative;
+    margin: 0;
+    text-align: left;
+    -webkit-padding-start: 0 !important;
+}
+
+.tabs li {
+    float: left;
+    display: block;
+}
+
+.tabs input[type="radio"]{
+    position:absolute;
+    top:-9999px;
+    left:-9999px;
+}
+
+.tabs label{
+    color:white;
+    display: block;
+    padding:10px 15px;
+    border-radius: 10px 10px 0 0;
+    font-size:16px;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: grey;
+    cursor: pointer;
+    position: relative;
+    margin-right: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabs label:hover{
+    background:#676767;
+}
+
+.tabs .tab-content{
+    border-top: 1px solid darkgreen;
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    left:0;
+}
+
+.tabs [id^="tab"]:checked + label{
+    background: darkgreen;
+}
+
+.tabs [id^="tab"]:checked ~ [id^="tab-content"]{
+    display:block;
+}
+
+#scoresheet{
+    width: 350px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -350px;
+    padding: 30px;
+}
+@media (min-width: 768px) {
+    #scoresheet{
+        background-color: transparent;
+    }
+}
+@media (min-width: 768px) {
+    #scoresheet{
+        height: auto;
+        width: 235px;
+        float: right;
+        right: 20px;
+        top: 35px;
+        padding: 0;
+        z-index: 3;
+        margin-bottom: 20px;
+    }
+}
+
+#scoresheet {
+    clear: both;
+    margin-bottom: 30px;
+}
+#scoresheet table {
+    border-collapse: collapse;
+    cursor: default;
+}
+#scoresheet td {
+    border: solid thin;
+    padding: 8px 10px;
+    text-align: right;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+#scoresheet td[id*=score] {
+    font-family: 'Patrick Hand', cursive;
+    padding: 4px 8px;
+    font-size: 18px;
+    text-align: center;
+}
+#scoresheet tr#upper-bonus td {
+    background-color: #adadad;
+    border-top: 2px solid black;
+    background: linear-gradient(to bottom, #6f6f6f 5%, #9a9a9a 25%, #afadad);
+}
+#scoresheet th {
+    text-transform: uppercase;
+    padding: 8px;
+    background-color: green;
+    background: linear-gradient(green, #004d00 100%);
+    color: white;
+    border: 1px solid black;
+    font-size: 12px;
+}
+#scoresheet .calculated-score {
+    display: none;
+    width: 50px;
+    color: white;
+    background: linear-gradient(to right, #0E6D0E 5%, #0D940D 35%, #12B912);
+    padding-left: 10px;
+    text-align: center;
+    border-color: black;
+    cursor: pointer;
+}
+#scoresheet .calculated-score:before {
+    content: '+';
+    display: inline;
+}
+#scoresheet .zero-score {
+    background: linear-gradient(to right, #464646 5%, #676767 35%, #797979);
+    padding-left: 21px;
+    color: transparent;
+}
+#scoresheet .zero-score:before {
+    color: white;
+    font-family: FontAwesome, 'Lato', sans-serif;
+    content: '\f00d';
+}
+
+#rollDieBtn,#close-rules{
+    font-size:20px;
+    float:left;
+    color:white;
+    background-color: green;
+    text-align: white;
+    padding:10px 15px;
+    display: inline-block;
+    border-radius: 10px;
+    position: relative;
+    transition: all, .3s;
+    border: 0;
+    cursor:pointer;
+}
+
+#close-rules{
+    font-size:15px;
+    float:right;
+}
+
+#rollDieBtn{
+    margin-top:30px;
+    margin-bottom:30px;
+    margin-left:30px;
+    border-radius: 5px 5px 10px 10px;
+    padding-top: 15px;
+    transition: all, .4s;
+    background-color: rgb(0, 92, 0);
+}
+
+#rollDieBtn:hover{
+    background-color: rgb(0, 63, 0);
+}
+
+#dieArea{
+    float:left;
+    width:100%;
+    height:250px;
+    display:block;
+    background-position: center;
+    box-shadow: 10px 25px 50px -10px rgba(0,0,0,0.4) inset, 5px 5px 10px -5px rgba(0,0,0,0.2) inset, 0 70px 120px rgba(0,0,0,0.3) inset;
+}
+
+#choosenDieArea{
+    float:left;
+    width: 65%;
+    margin-left: 30px;
+    height: 120px;
+    display: block;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-top:20px;
+    background-position: -20px 0;
+    padding: 5px;
+    box-shadow: 10px 25px 50px -10px rgba(0,0,0,0.4) inset, 5px 5px 10px -5px rgba(0,0,0,0.2) inset, 0 70px 120px rgba(0,0,0,0.3) inset;
+}
+
+#site-wrapper.showRules #canvas{
+    -webkit-transform: translateX(410px);
+    transform: translateX(410px);
+    -webkit-transform: translateX(410px) translateZ(0);
+    transform: translateX(410px) translateZ(0);
+    -webkit-transform: translate3d(410px,0,0);
+    transform: translate3d(410px,0,0);
+}
+
+.die,
+.dieChoosen{
+    float: left;
+    background-color: white;
+    width:120px;
+    height:120px;
+    margin:-10px;
+    transform: scale(.5);
+    transition: all, .3s;
+    border-radius: 10px;
+    position:relative;
+    box-shadow: 0 0 25px 0 rgba(0,0,0,.4), 0 0 45px 0 rgba(0,0,0,.4) inset;
+    background-size:contain;
+    background-position: center center;
+    cursor:pointer;
+}
+
+@media (min-width: 768px){
+    .die,
+    .dieChoosen{
+        transform: scale(0.5);
+        margin: 5px;
+    }
+    .die:hover,
+    .dieChoosen:hover{
+        transform: scale(0.7) !important;
+    }
+}
+@media (min-width: 992px){
+    .die,
+    .dieChoosen{
+        transform: scale(0.7);
+        margin: 5px;
+    }
+    .die:hover,
+    .dieChoosen:hover{
+        transform: scale(0.9) !important;
+    }
+}
+@media (min-width: 1200px){
+    .die,
+    .dieChoosen{
+        transform: scale(0.9);
+        margin: 5px;
+    }
+    .die:hover,
+    .dieChoosen:hover{
+        transform: scale(1.1) !important;
+    }
+}
+
+.die:hover,
+.dieChoosen:hover{
+    transform:scale(0.8) !important;
+    box-shadow: 3px 6px 40px 5px rgba(0,0,0,.3), 3px 6px 60px 5px rgba(0,0,0,.3) inset;
+}
+
+/*Placing Dice*/
+#dieArea .die{
+    position: absolute;
+    top:27%;
+}
+#dieArea .die[dieIndex='0']{
+    left: 5%;
+}
+#dieArea .die[dieIndex='1']{
+    left: 20%;
+}
+#dieArea .die[dieIndex='2']{
+    left: 35%;
+}
+#dieArea .die[dieIndex='3']{
+    left: 50%;
+}
+#dieArea .die[dieIndex='4']{
+    left: 65%;
+}
+
+@media (min-width: 768px){
+    #dieArea{
+        width: 100%;
+        height: 300px;
+        background-size: 270px, auto, auto;
+    }
+    #dieArea .die[dieIndex='0']{
+        left: 4%;
+    }
+    #dieArea .die[dieIndex='1']{
+        left: 16%;
+    }
+    #dieArea .die[dieIndex='2']{
+        left: 28%;
+    }
+    #dieArea .die[dieIndex='3']{
+        left: 40%;
+    }
+    #dieArea .die[dieIndex='4']{
+        left: 52%;
+    }
+}
+@media (min-width: 992px){
+    #dieArea .die[dieIndex='0']{
+        left: 5%;
+    }
+    #dieArea .die[dieIndex='1']{
+        left: 19%;
+    }
+    #dieArea .die[dieIndex='2']{
+        left: 34%;
+    }
+    #dieArea .die[dieIndex='3']{
+        left: 48%;
+    }
+    #dieArea .die[dieIndex='4']{
+        left: 63%;
+    }
+}
+
+/*Placing Choosen Dice*/
+#dieArea .dieChoosen{
+    position: absolute;
+    top:52%;
+}
+#dieArea .dieChoosen[dieIndex='0']{
+    left: 5%;
+}
+#dieArea .dieChoosen[dieIndex='1']{
+    left: 20%;
+}
+#dieArea .dieChoosen[dieIndex='2']{
+    left: 35%;
+}
+#dieArea .dieChoosen[dieIndex='3']{
+    left: 50%;
+}
+#dieArea .dieChoosen[dieIndex='4']{
+    left: 65%;
+}
+
+@media (min-width: 768px){
+    #dieArea{
+        width: 100%;
+        height: 300px;
+        background-size: 270px, auto, auto;
+    }
+    #dieArea .dieChoosen[dieIndex='0']{
+        left: 4%;
+    }
+    #dieArea .dieChoosen[dieIndex='1']{
+        left: 16%;
+    }
+    #dieArea .dieChoosen[dieIndex='2']{
+        left: 28%;
+    }
+    #dieArea .dieChoosen[dieIndex='3']{
+        left: 40%;
+    }
+    #dieArea .dieChoosen[dieIndex='4']{
+        left: 52%;
+    }
+}
+@media (min-width: 992px){
+    #dieArea .dieChoosen[dieIndex='0']{
+        left: 5%;
+    }
+    #dieArea .dieChoosen[dieIndex='1']{
+        left: 19%;
+    }
+    #dieArea .dieChoosen[dieIndex='2']{
+        left: 34%;
+    }
+    #dieArea .dieChoosen[dieIndex='3']{
+        left: 48%;
+    }
+    #dieArea .dieChoosen[dieIndex='4']{
+        left: 63%;
+    }
+}
+
+.die:after,
+.dieChoosen:after{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+/*Placing the spots*/
+.die[dieValue='1']:after,
+.dieChoosen[dieValue='1']:after{
+    box-shadow: 50px 50px 0 0px rgba(0, 0, 0, 0.8);
+}
+.die[dieValue='2']:after,
+.dieChoosen[dieValue='2']:after{
+    box-shadow: 20px 20px 0 0px rgba(0, 0, 0, 0.8), 80px 80px 0 0px rgba(0, 0, 0, 0.8);
+}
+.die[dieValue='3']:after,
+.dieChoosen[dieValue='3']:after{
+    box-shadow: 20px 20px 0 0px rgba(0, 0, 0, 0.8), 50px 50px 0 0px rgba(0, 0, 0, 0.8), 80px 80px 0 0px rgba(0, 0, 0, 0.8);
+}
+.die[dieValue='4']:after,
+.dieChoosen[dieValue='4']:after{
+    box-shadow: 20px 20px 0 0px rgba(0, 0, 0, 0.8), 80px 80px 0 0px rgba(0, 0, 0, 0.8), 20px 80px 0 0px rgba(0, 0, 0, 0.8), 80px 20px 0 0px rgba(0, 0, 0, 0.8);
+}
+.die[dieValue='5']:after,
+.dieChoosen[dieValue='5']:after{
+    box-shadow: 20px 20px 0 0px rgba(0, 0, 0, 0.8), 80px 80px 0 0px rgba(0, 0, 0, 0.8), 20px 80px 0 0px rgba(0, 0, 0, 0.8), 80px 20px 0 0px rgba(0, 0, 0, 0.8), 50px 50px 0 0px rgba(0, 0, 0, 0.8);
+}
+.die[dieValue='6']:after,
+.dieChoosen[dieValue='6']:after{
+    box-shadow: 20px 20px 0 0px rgba(0, 0, 0, 0.8), 80px 80px 0 0px rgba(0, 0, 0, 0.8), 20px 80px 0 0px rgba(0, 0, 0, 0.8), 80px 20px 0 0px rgba(0, 0, 0, 0.8), 20px 50px 0 0px rgba(0, 0, 0, 0.8), 80px 50px 0 0px rgba(0, 0, 0, 0.8);
+}
+
+h1#scoreMessage {
+    visibility: hidden;
+    position: fixed;
+    z-index: 3;
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+    top: 125px;
+    font-size: 32px;
+    text-align: center;
+    text-shadow: 0 10px 30px green, 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+h1#scoreMessage .score-total {
+    font-size: 96px;
+    display: block;
+    color: #E8C403;
+}
+@media (min-width: 768px) {
+    h1#scoreMessage {
+        top: 150px; 
+    }
+}

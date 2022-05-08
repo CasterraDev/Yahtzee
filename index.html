@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "index.css">
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Yahtzee!</title>
+</head>
+<body>
+    <div id = "site-wrapper">
+        <div id = "canvas">
+            <div id = "rules">
+                <button id = "close-rules"><i class = "fa fa-close"></i></button>
+                <ul class = "tabs">
+                    <li>
+                        <input type = "radio" name = "tabs" id = "tab-rules" checked />
+                        <label for = "tab-rules">Rules</label>
+                        <div id = "tab-content" class = "tab-content">
+                            <p><strong>Objective: </strong> is to get as many points by rolling the five die.</p>
+                            <p>There are 13 rounds. That start off by rolling the five die. You then can reroll certain die you don't want up to three times</p>
+                            <p>The game ends when all 13 score catergories have been used</p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type = "radio" name = "tabs" id = "tab-scoring" />
+                        <label for = "tab-scoring">Scoring</label>
+                        <div id = "tab-content" class = "tab-content">
+                            <p>The top six sections score a sum of the choosen die. If the total score of the six sections is above 63. You will get an additional 35 points.</p>
+                            
+                            <p><strong>3 of a kind</strong>: Three of the same dice. Scores: add up all the spots on the dice</p>
+                            <p><strong>4 of a kind</strong>: Four of the same dice. Scores: add up all the spots on the dice</p>
+                            <p><strong>Full House</strong>: Three dice showing the same number and Two dice showing a different number. Scores 25 points</p>
+                            <p><strong>Small Straight</strong>: Any four consecutive numbers (eg. 1-2-3-4). Scores 30 points</p>
+                            <p><strong>Large Straight</strong>: Any five consecutive numbers (eg. 2-3-4-5-6). Scores 40 points</p>
+                            <p><strong>Chance</strong>: Any combination of dice. Scores the sum of the dice</p>
+                            <p><strong>YAHTZEE</strong>: Five of a kind. All 5 dice showing the same number. Scores 50 points</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div id = "scoresheet">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class = "section-head">Sections</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>One</td>
+                            <td id = "one-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Two</td>
+                            <td id = "two-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Three</td>
+                            <td id = "three-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Four</td>
+                            <td id = "four-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Five</td>
+                            <td id = "five-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Six</td>
+                            <td id = "six-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr id="upper-bonus">
+                            <td>Bonus</td>
+                            <td id="upper-bonus-score"></td>
+                        </tr>
+                        <tr>
+                            <th class="section-heading">Lower section</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr>
+                            <td>3 of a Kind</td>
+                            <td id = "3kind-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>4 of a Kind</td>
+                            <td id = "4kind-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Full House</td>
+                            <td id = "fullHouse-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Small Straight</td>
+                            <td id = "smallStrt-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Large Straight</td>
+                            <td id = "largeStrt-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Chance</td>
+                            <td id = "chance-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                        <tr>
+                            <td>Yahtzee</td>
+                            <td id = "yahtzee-score"></td>
+                            <td class = "calculated-score"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button id = "rollDieBtn" class="roll-1">ROLL DIE</button>
+
+            <span id = "roundNum">1</span>/<span class= "totalRounds">13</span>
+
+            <h1 id = "logo">Yahtzee!</h1>
+
+            <h1 id="scoreMessage">Game over!<br>Your total score is <span class="score-total"><i class="fa fa-trophy"></i> <span id="finalScore"></span></span></h1>
+
+            <div id = "dieArea"></div>
+
+            <div id = "choosenDieArea"></div>
+
+            <button id = "openRulesBtn"><i class="fa fa-question-circle"></i> Rules &amp; scoring info</button>
+
+            <script src="yahtzee.js"></script>
+            <script src="scoresheet.js"></script>
+        </div>
+    </div>
+</body>
+</html>
